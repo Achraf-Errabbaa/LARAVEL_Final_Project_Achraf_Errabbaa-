@@ -29,7 +29,7 @@
                 <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Courses</a></li>
+                    <li><a href="{{ route('coach.course') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Courses</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">FAQ</a></li>

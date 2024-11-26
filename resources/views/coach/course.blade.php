@@ -93,43 +93,50 @@
     </div>
 
     <!-- Modal -->
-    <div id="addClassModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-        <div class="bg-white rounded-xl shadow-lg p-6 max-w-xl w-full">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold ">Create a New Course</h2>
-                <button id="closeModalBtn" class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-times"></i>
+    <div id="addClassModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Create a New Course</h2>
+                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
             <form action="{{ route('coach.store') }}" enctype="multipart/form-data" method="POST" class="space-y-6">
                 @csrf
                 <div>
-                    <label for="file" class="block text-sm font-medium text-text mb-2">Course Image:</label>
+                    <label for="file" class="block text-sm font-medium text-gray-700 mb-2">Course Image:</label>
                     <div id="fileThumbnail"
-                        class="w-full h-48 bg-no-repeat bg-secondary bg-cover border-2 border-dashed border-black rounded-xl flex items-center justify-center cursor-pointer hover:bg-primary/10 transition duration-300"
+                        class="w-full h-56 bg-gray-100 bg-no-repeat bg-cover border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-50 transition duration-300 ease-in-out"
                         onclick="document.getElementById('file').click();">
-                        <span class=" text-sm">Choose an image</span>
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="mt-1 text-sm text-gray-600">Click to upload an image</p>
+                            <p class="mt-1 text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        </div>
                     </div>
                     <input type="file" name="file" id="file" class="hidden" required onchange="updateThumbnail(event)">
                 </div>
                 
-                
                 <div>
-                    <label for="title" class="block text-sm font-medium text-text mb-2">Course Title:</label>
+                    <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Course Title:</label>
                     <input type="text" name="title" id="title"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
                         required>
                 </div>
                 <div>
-                    <label for="description" class="block text-sm font-medium text-text mb-2">Description:</label>
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description:</label>
                     <textarea name="description" id="description" rows="4"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
                         required></textarea>
                 </div>
                 <div>
-                    <label for="class_id" class="block text-sm font-medium text-text mb-2">Class:</label>
+                    <label for="class_id" class="block text-sm font-medium text-gray-700 mb-2">Class:</label>
                     <select name="class_id" id="class_id"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
                         required>
                         <option value="" disabled selected>Select a class</option>
                         @foreach ($classes as $class)
@@ -138,12 +145,30 @@
                     </select>
                 </div>
                 <button type="submit"
-                    class="w-full bg-blue-500 px-6 py-3 rounded-xl hover:bg-primary/80 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    <i class="fas fa-plus-circle mr-2"></i>Create Course
+                    class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <svg class="inline-block w-5 h-5 mr-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Create Course
                 </button>
             </form>
         </div>
     </div>
+    
+    <script>
+        function updateThumbnail(event) {
+            const file = event.target.files[0];
+            const thumbnail = document.getElementById('fileThumbnail');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    thumbnail.style.backgroundImage = `url(${e.target.result})`;
+                    thumbnail.innerHTML = '';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 
     <script>
         const addClassModal = document.getElementById('addClassModal');

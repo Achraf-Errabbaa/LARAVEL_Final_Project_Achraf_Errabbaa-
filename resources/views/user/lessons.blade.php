@@ -38,12 +38,12 @@
                 <div class="px-6 py-4 border-t border-gray-200 space-y-4">
                     @if($lesson->image)
                     <div class="relative">
-                        <img class="w-full h-48 object-cover rounded-md" src="{{ asset('storage/' . $lesson->image) }}" alt="{{ $lesson->title }}">
+                        <img class="w-32 h-32 object-cover rounded-md" src="{{ asset('storage/' . $lesson->image) }}" alt="{{ $lesson->title }}">
                     </div>
                     @endif
 
-                    <p class="text-gray-700">{{ $lesson->description }}</p>
-
+                    <p class="text-gray-700"> <span class="text-gray-500">Description:</span> {{ $lesson->description }}</p>
+                    <p class="text-gray-700"> <span class="text-gray-500">Content:</span> {{ $lesson->content }}</p>
                     <!-- Lesson Resources -->
                     <div class="space-y-2">
                         @if($lesson->video)
@@ -69,6 +69,7 @@
                     </div>
 
                     <!-- Admin Actions -->
+                    @if (Auth::User()->role== 'coach' || Auth::User()->role== 'admin')
                     <div class="space-y-3 pt-4 border-t border-gray-200">
                         <form action="{{ route('lesson.destroy', ['course' => $course->id, 'lesson' => $lesson->id]) }}" method="POST">
                             @csrf
@@ -79,7 +80,7 @@
                             </button>
                         </form>
 
-                        <button class="btn-complete flex items-center justify-center w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-300" 
+                        {{-- <button class="btn-complete flex items-center justify-center w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-300" 
                                 data-lesson-id="{{ $lesson->id }}">
                             <i class="fas fa-check-circle mr-2"></i>
                             Mark as Complete
@@ -91,8 +92,9 @@
                             <i class="fas fa-arrow-right mr-2"></i>
                             Next Lesson
                         </button>
-                        @endif
+                        @endif --}}
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

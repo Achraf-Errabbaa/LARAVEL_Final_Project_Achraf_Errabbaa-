@@ -30,7 +30,7 @@ class AdminController extends Controller
         $haja->update([
             'role'=> 'coach',
         ]);
-        return back()->with('role', 'Role given Successfully');
+        return back()->with('role_success', 'Role given Successfully');
     }
 
     public function approve(User $user)
@@ -45,7 +45,7 @@ class AdminController extends Controller
         Mail::to($user->email)->send(new ApproveMailer($password));
 
         // Auth::login($user);
-        return back()->with('success', 'User is accepted Successfully');
+        return back()->with('approve_success', 'User is accepted Successfully');
     }
 
     /**
@@ -55,7 +55,7 @@ class AdminController extends Controller
     {
         $user->delete(); // Remove user from the database
 
-        return back()->with('success', 'User rejected and removed successfully.');
+        return back()->with('reject_success', 'User rejected and removed successfully.');
     }
 
     public function handle(Request $request, Closure $next)

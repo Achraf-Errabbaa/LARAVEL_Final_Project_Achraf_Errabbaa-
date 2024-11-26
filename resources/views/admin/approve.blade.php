@@ -1,18 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('approve_success') || session('role_success') || session('reject_success'))
+    <div id="flash-message" class="fixed top-4 right-4 z-50">
+        @if (session('approve_success'))
+            <div class="mb-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md">
+                <p class="font-bold">Success</p>
+                <p>{{ session('approve_success') }}</p>
+            </div>
+        @endif
+
+        @if (session('role_success'))
+            <div class="mb-4 bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md">
+                <p class="font-bold">Success</p>
+                <p>{{ session('role_success') }}</p>
+            </div>
+        @endif
+
+        @if (session('reject_success'))
+            <div class="mb-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md">
+                <p class="font-bold">Success</p>
+                <p>{{ session('reject_success') }}</p>
+            </div>
+        @endif
+    </div>
+@endif
 <div class="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div class="p-6 sm:p-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-2">Admin Approval</h2>
             <p class="text-gray-500 mb-6">Manage pending user registrations</p>
-
-            @if (session('success'))
-                <div class="mb-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md transition-all duration-500 ease-in-out">
-                    <p class="font-bold">Success</p>
-                    <p>{{ session('success') }}</p>
-                </div>
-            @endif
 
             <div class="mb-6">
                 <label for="search" class="sr-only">Search</label>
@@ -69,12 +86,6 @@
         <div class="p-6 sm:p-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-2">turn user into coach</h2>
 
-            @if (session('success'))
-                <div class="mb-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md transition-all duration-500 ease-in-out">
-                    <p class="font-bold">Success</p>
-                    <p>{{ session('success') }}</p>
-                </div>
-            @endif
 
             <div class="mb-6">
                 <label for="search" class="sr-only">Search</label>
@@ -137,6 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                setTimeout(() => {
+                    flashMessage.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                    setTimeout(() => flashMessage.remove(), 500); // Remove from DOM after fade-out
+                }, 3000); // 3 seconds before fading out
+            }
+        });
 </script>
 @endpush
 
